@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		function returnPromise() {
+			return new Promise(function (resolve, reject) {
+				let number = Math.random() * 10
+				console.log('number', number)
+				setTimeout(() => {
+					if (number > 5) {
+						resolve('number大于5')
+					} else {
+						reject('number小于5')
+					}
+				}, 1000)
+			})
+		}
+		// returnPromise()
+		// 	.then((result) => {
+		// 		console.log('我是成功的调用，因为number大于5')
+		// 		console.log(result)
+		// 		console.log('我是用来制造异常', abc)
+		// 		return result
+		// 	}, (result) => {
+		// 		console.log('我是失败的调用，因为number小于5')
+		// 		console.log(result)
+		// 		// console.log('我是用来制造异常', def)
+		// 		return result
+		// 	})
+		// 	.then((result) => {
+		// 		console.log('OK，前面一个than里面的函数执行只要没有报错，我就会执行')
+		// 		console.log(result)
+		// 	}, (result) => {
+		// 		console.log('Error，前面一个than里面的函数执行只要有报错，我就会执行')
+		// 		console.log(result)
+		// 	})
+
+		async function asyncCall() {
+			try {
+				result = await returnPromise() // await后面接一个promise，如果成功了（resolve），就会把结果返回给result。
+				console.log('result', result)
+				console.log('我是用来制造异常', aaa)
+			} catch (error) { // 如果失败了（reject或者异常），就会抛出一个错误，用try catch可以捕获这个错误
+				console.log('Error', error)
+			}
+		}
+		asyncCall()
+	</script>
+</body>
+
+</html>
