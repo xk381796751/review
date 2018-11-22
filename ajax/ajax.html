@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>ajax</title>
+</head>
+
+<body>
+
+	<script>
+		let request = new XMLHttpRequest()
+		// 尽量放在最上面，这样就不会错过任何变化
+		// 如果放在request.send()之后，这时候readyState已经从0变为1，就只能捕获到2，3，4。
+		request.onreadystatechange = () => {
+			if (request.readyState === 4) {
+				if (request.status >= 200 && request.status < 300) {
+					console.log('请求成功')
+				} else if (request.status >= 400) {
+					console.log('请求失败')
+				}
+			}
+		}
+		//初始化请求
+		request.open('GET', '/xxx')
+		//发送请求
+		request.send()
+	</script>
+</body>
+
+</html>
