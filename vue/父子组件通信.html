@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>父子组件通信</title>
+</head>
+
+<body>
+	<div id="components-demo">
+		<button-counter :value="value" @click-button="getMessage"></button-counter>
+		<h1 ref=output></h1>
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.5.17/vue.min.js"></script>
+	<script>
+		Vue.component('button-counter', {
+			props: ['value'],
+			template: '<button v-on:click="notify">{{value}}</button>',
+			methods: {
+				notify() {
+					this.$emit('click-button', '我是子组件传过来的值')
+				}
+			}
+		})
+
+
+		new Vue({
+			el: '#components-demo',
+			data: {
+				value: "传值"
+			},
+			methods: {
+				getMessage(data) {
+					this.$refs.output.textContent = data
+				}
+			}
+
+		})
+	</script>
+</body>
+
+</html>
