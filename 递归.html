@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>递归</title>
+</head>
+
+<body>
+	<script>
+		// 递归：一个调用自身的函数被称作递归函数
+		// 使用场景：使用循环发送ajax请求
+		function loop(x) {
+			if (x >= 10) // "x >= 10" 是递归终止条件
+				return;
+			// 进行一些操作...
+			// console.log(1)
+			loop(x + 1); // 递归调用
+		}
+		loop(0);
+
+
+		// 笔试题
+		// 编写一个方法cloneJson(), 将输入的js对象的所有基本数据类型属性转换为一个多维数组输出
+		// 例如: var obj = { a: { c: 1 }, b: 2 }; cloneJson(obj);  //得到结果[[1],2];
+
+		function cloneJson(obj, arr) {
+			if(obj && typeof obj === 'object') {
+				for(let key in obj) {
+					if(obj[key] && typeof obj[key] === 'object') {
+						const newArr = []
+						cloneJson(obj[key], newArr)
+						arr.push(newArr)
+					} else {
+						arr.push(obj[key])
+					}
+				}
+				return arr
+			}
+		}
+		let obj = {
+			a: { c: 1 },
+			b: 2
+		}
+		let res = cloneJson(obj, [])
+		console.log('res', res)
+	</script>
+</body>
+
+</html>
