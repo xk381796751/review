@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>三角形</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.wrap {
+			position: relative;
+			width: 150px;
+			height: 200px;
+			border: 1px solid #555;
+			border-radius: 6px;
+			margin: 50px auto;
+		}
+		.wrap::before{
+			content: '';
+			border: 7px solid #555;
+			border-color: transparent transparent #555;
+			position: absolute;
+			left: 16px;
+			top: -15px;
+		}
+		.wrap::after{
+			content: '';
+			border: 7px solid #fff;
+			border-color: transparent transparent #fff;
+			position: absolute;
+			left: 16px;
+			top: -13px;
+		}
+		.wrap.down::before{
+			top: unset;
+			bottom: -15px;
+			border-color: #555 transparent transparent;
+		}
+		.wrap.down::after{
+			top: unset;
+			bottom: -13px;
+			border-color: #fff transparent transparent;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap up"></div>
+	<div class="wrap down"></div>
+</body>
+</html>
