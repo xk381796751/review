@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>回调地狱</title>
+</head>
+<body>
+	
+
+
+	<script>
+		// 想满足一个场景，依次打印 1 2 3
+		function fn1(callBack) {
+			setTimeout(() => {
+				console.log(1)
+				callBack && callBack()
+			}, 500)
+		}
+		function fn2(callBack) {
+			setTimeout(() => {
+				console.log(2)
+				callBack && callBack()
+			}, 500)
+		}
+		function fn3() {
+			setTimeout(() => {
+				console.log(3)
+			}, 500)
+		}
+		
+		fn1(function() {
+			fn2(function() {
+				fn3()
+			})
+		})
+		// 此时回调嵌套过多，也就是所谓的 回调地狱
+ 	</script>
+</body>
+</html>
