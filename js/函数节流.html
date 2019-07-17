@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>函数节流</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			margin: 100px;
+			width: 1000px;
+			height: 500px;
+			background: #ccc;
+			font-size: 18px;
+			text-align: center;
+			line-height: 500px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+
+
+	<script>
+		function throttle(func, delay) {
+			let run = true
+			return function() {
+				if (!run) {
+					return // 如果开关关闭了，那就直接不执行下边的代码
+				}
+				run = false
+				setTimeout(() => {
+					func.apply(this, arguments)
+					run = true
+				}, delay)
+			}
+		}
+		const box = document.getElementById('box')
+		box.onmousemove = throttle(function(e) {
+			const {clientX, clientY} = e
+			box.innerText = `${clientX}, ${clientY}`
+		}, 1000)
+	</script>
+</body>
+</html>
