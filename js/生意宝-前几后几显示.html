@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+
+
+
+	<script>
+		var data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+		var value = 5;
+		var topNumber = 2 // top几
+		var previewNumber = 1 // 前几
+		var nextNumber = 1 // 后几
+		var currentUserIndex;
+		var startIndex;
+		var count;
+		
+		for (var i = 0; i < data.length; i++) {
+			if (data[i] === value) {
+				currentUserIndex = i
+				break
+			}
+		}
+		var leftData = data.splice(0, topNumber)
+		if ((currentUserIndex - previewNumber) > topNumber) {
+			startIndex = currentUserIndex - topNumber - previewNumber 
+			count = previewNumber + 1 + nextNumber
+		} else {
+			startIndex = 0
+			count = currentUserIndex - topNumber + 1 + nextNumber
+		}
+		console.log('startIndex', startIndex)
+		console.log('count', count)
+		var rightData = data.splice(startIndex, count)
+		console.log('leftData', leftData)
+		console.log('rightData', rightData)
+		var result = leftData.concat(rightData)
+		
+		console.log('result', result) // [1, 2, 3, 4, 5, 6, 7, 8]
+	</script>
+</body>
+
+</html>
