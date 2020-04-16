@@ -14,7 +14,8 @@
 		let arr = [1, [2, [3, [4, 5]]], 6];
 
 		// 只要有一个元素为数组，就继续循环
-		while (arr.some(item => Array.isArray(item))) {
+		// some接收一个函数，Array.isArray是一个函数(后面没有括号，不是调用)
+		while (arr.some(Array.isArray)) {
 			arr = [].concat(...arr)
 		}
 		console.log(arr)
