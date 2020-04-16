@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>利用reduce函数迭代</title>
+</head>
+<body>
+	
+
+
+	<script>
+		let arr = [1, [2, [3, [4, 5]]], 6];
+		function flat(array) {
+			return array.reduce((acc, cur) => {
+				return acc.concat(Array.isArray(cur) ? flat(cur) : cur)
+			}, [])
+		}
+		console.log(flat(arr))
+	</script>
+</body>
+</html>
