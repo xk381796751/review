@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>普通递归实现</title>
+</head>
+<body>
+	
+
+
+	<script>
+		let arr = [1, [2, [3, [4, 5]]], 6]
+		function flat(array) {
+			let ret = []
+			let each = (arr) => {
+				arr.forEach(item => {
+					if (Array.isArray(item)) {
+						each(item)
+					} else {
+						ret.push(item)
+					}
+				})
+			}
+			each(array)
+			return ret
+		}
+		console.log(flat(arr))
+	</script>
+</body>
+</html>
