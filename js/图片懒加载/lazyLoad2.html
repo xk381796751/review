@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>lazyLoad2</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			height: 2000px;
+			background: pink;
+		}
+
+		img {
+			display: block;
+			margin: 0 auto;
+			width: 300px;
+		}
+	</style>
+</head>
+
+<body>
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+	<img src="../../img/default.jpg" data-src="../../img/1.jpg">
+
+	<script>
+		window.onload = function() {
+			let imgs = document.querySelectorAll('img')
+			let count = 0; // 计数器，从第一张图片开始计
+			let viewHeight = document.documentElement.clientHeight; // 视口高度
+
+			lazyLoad() // 首次加载,在视口内的图片要正常显示
+
+			window.onscroll = lazyLoad
+
+			function lazyLoad() {
+				for (let i = count; i < imgs.length; i++) {
+					let item = imgs[i]
+					// 元素出现在视口中
+					if (item.getBoundingClientRect().top < viewHeight) {
+						if (item.getAttribute('src') !== '../../img/default.jpg') continue
+						count++
+						setTimeout(() => {
+							item.src = item.getAttribute('data-src')
+						}, 300)
+					}
+				}
+			}
+		}
+	</script>
+</body>
+
+</html>
