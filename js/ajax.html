@@ -13,7 +13,7 @@
 	<script>
 		let request = new XMLHttpRequest()
 		// 尽量放在最上面，这样就不会错过任何变化
-		// 如果放在request.send()之后，这时候readyState已经从0变为1，就只能捕获到2，3，4。
+		// 如果放在request.open()之后，这时候readyState已经从0变为1，就只能捕获到2，3，4。
 		request.onreadystatechange = () => {
 			if (request.readyState === 4) {
 				if (request.status >= 200 && request.status < 300) {
