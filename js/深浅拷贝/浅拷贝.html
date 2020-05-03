@@ -12,7 +12,7 @@
 
 
 	<script>
-		function shallowClone(target) {
+		function shallowCopy(target) {
 			if (typeof target === 'object' && target !== null) {
 				const cloneTarget = Array.isArray(target) ? [] : {};
 				for (let prop in target) {
@@ -27,7 +27,7 @@
 		}
 		let arr = [0, 1, 2]
 		// let newArr = arr
-		let newArr = shallowClone(arr)
+		let newArr = shallowCopy(arr)
 		newArr[0] = 999
 		console.log('arr', arr)
 		console.log('newArr', newArr)
