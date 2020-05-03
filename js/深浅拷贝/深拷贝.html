@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		function deepCopy(target)  {
+			var ret = Array.isArray(target) ? [] : {}
+			for (var key in target) {
+				var value = target[key]
+				ret[key] = typeof value === 'object' ? deepCopy(value) : value
+			}
+			return ret
+		}
+		
+		// target 为对象
+		// let o = {
+		// 	no:1,
+		// 	deep: {
+		// 		count: 1
+		// 	}
+		// }
+		// let r = deepCopy(o)
+		// r.deep.count = 7
+
+		// target 为数组
+		let o = [1, 2, {count: 1}]
+		let r = deepCopy(o)
+		r[2].count = 11
+
+
+		console.log('o', o) 
+		console.log('r', r) 
+	</script>
+
+</body>
+
+</html>
