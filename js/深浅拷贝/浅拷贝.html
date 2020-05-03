@@ -14,13 +14,13 @@
 	<script>
 		function shallowCopy(target) {
 			if (typeof target === 'object' && target !== null) {
-				const cloneTarget = Array.isArray(target) ? [] : {};
+				const copyTarget = Array.isArray(target) ? [] : {};
 				for (let prop in target) {
 					if (target.hasOwnProperty(prop)) {
-						cloneTarget[prop] = target[prop];
+						copyTarget[prop] = target[prop];
 					}
 				}
-				return cloneTarget;
+				return copyTarget;
 			} else {
 				return target;
 			}
