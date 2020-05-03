@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+
+
+	<script>
+		function shallowClone(target) {
+			if (typeof target === 'object' && target !== null) {
+				const cloneTarget = Array.isArray(target) ? [] : {};
+				for (let prop in target) {
+					if (target.hasOwnProperty(prop)) {
+						cloneTarget[prop] = target[prop];
+					}
+				}
+				return cloneTarget;
+			} else {
+				return target;
+			}
+		}
+		let arr = [0, 1, 2]
+		// let newArr = arr
+		let newArr = shallowClone(arr)
+		newArr[0] = 999
+		console.log('arr', arr)
+		console.log('newArr', newArr)
+	</script>
+</body>
+
+</html>
