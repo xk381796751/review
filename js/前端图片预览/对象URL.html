@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>对象URL</title>
+	<style>
+		#inputFile {
+			display: none;
+		}
+
+		label {
+			/* 关于label样式 */
+		}
+	</style>
+</head>
+
+<body>
+	<input type='file' multiple accept='image/png, image/jpeg, image/jpg, image/svg, image/gif' id='inputFile'>
+	<label for="inputFile">上传图片</label>
+
+	<script>
+		var inputFile = document.getElementById('inputFile')
+		var body = document.body 
+
+		inputFile.addEventListener('change', changeHandler, false)
+
+		function changeHandler(e) {
+			var files = Array.from(e.target.files)
+			files.forEach(function (item) {
+				var image = new Image()
+				image.src = createObjectURL(item)
+				body.appendChild(image)
+				image.onload = function () {
+					revokeObjectURL(this.src)
+				}
+			})
+		}
+
+		function createObjectURL(file) {
+			if (window.URL) {
+				return window.URL.createObjectURL(file)
+			} else {
+				return window.webkitURL.createObjectURL(file)
+			}
+		}
+
+		function revokeObjectURL(file) {
+			if (window.URL) {
+				return window.URL.revokeObjectURL(file)
+			} else {
+				return window.webkitURL.revokeObjectURL(file)
+			}
+		}
+	</script>
+</body>
+
+</html>
