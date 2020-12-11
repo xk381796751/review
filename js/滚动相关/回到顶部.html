@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			height: 400vh;
+			background: peru;
+		}
+		.back {
+			width: 120px;
+			height: 60px;
+			line-height: 60px;
+			text-align: center;
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			background: red;
+			border-radius: 5px;
+			color: #fff;
+			cursor: pointer;
+			display: none;
+		}
+		.back:hover {
+			background: pink;
+			color: #000;
+		}
+	</style>
+</head>
+<body>
+	<div class="back">回到顶部</div>
+
+
+	<script>
+		const btn = document.querySelector('.back')
+		btn.addEventListener('click', () => document.documentElement.scrollTop = 0)
+		window.addEventListener('scroll', e => {
+			const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+			if (scrollTop > 300) {
+				btn.style.display = 'block'
+			} else {
+				btn.style.display = 'none'
+			}
+		})	
+	</script>
+</body>
+</html>

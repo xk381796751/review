@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.wrap {
+			margin: 100px auto;
+			padding: 10px;
+			width: 300px;
+			height: 450px;
+			background: pink;
+			overflow: auto;
+		}
+		.inner {
+			width: 700px;
+			height: 700px;
+			background: orangered;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="inner"></div>
+	</div>
+
+
+	<script>
+		const wrap = document.querySelector('.wrap')
+		const inner = document.querySelector('.inner')
+
+		wrap.addEventListener('scroll', e => {
+			const { scrollWidth, scrollHeight, scrollLeft, scrollTop, clientWidth, clientHeight } = e.target
+			// console.log({ scrollHeight, scrollTop, clientHeight })
+			// console.log({ scrollWidth, scrollLeft, clientWidth })
+			if (scrollHeight - scrollTop === clientHeight) {
+				console.log('垂直方向到底')
+			}
+
+			if (scrollWidth - scrollLeft === clientWidth) {
+				console.log('水平方向到底')
+			}
+		})
+	</script>
+</body>
+</html>
