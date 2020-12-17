@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.traffic {
+			padding: 20px;
+		}
+
+		.light {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background: #999;
+			margin-bottom: 10px;
+		}
+
+		.traffic.pass .light:nth-child(1) {
+			background: green;
+		}
+
+		.traffic.wait .light:nth-child(2) {
+			background: yellow;
+		}
+
+		.traffic.stop .light:nth-child(3) {
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+	<header>交通信号灯F</header>
+	<main>
+		<div class="traffic">
+			<div class="light"></div>
+			<div class="light"></div>
+			<div class="light"></div>
+		</div>
+	</main>
+
+
+	<script>
+		const traffic = document.querySelector('.traffic')
+		const signals = [
+			{signal: 'pass', duration: 2000},
+			{signal: 'wait', duration: 500},
+			{signal: 'stop', duration: 1000}
+		]
+
+		function signalLoop(subject, signals, onSignal) {
+			const signalCount = signals.length
+			function updateState(i) {
+				const { signal, duration } = signals[i % signalCount]
+				onSignal(subject, signal)
+				setTimeout(updateState.bind(null, i + 1), duration)
+			}
+			updateState(0)
+		}
+		signalLoop(traffic, signals, (subject, signal) => {
+			subject.className = `traffic ${signal}`
+		})
+	</script>
+</body>
+
+</html>
